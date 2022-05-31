@@ -19,6 +19,9 @@ const AddUser = (props) => {
   };
 
   const addUserHandler = (event) => {
+    //onSubmit 기본 동작을 멈춤
+    event.preventDefault();
+    
     /* 유효성 검사 */
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       // 공백으로 입력한 경우
@@ -37,9 +40,6 @@ const AddUser = (props) => {
       return;
     }
 
-    //onSubmit 기본 동작을 멈춤
-    event.preventDefault();
-
     // App.js에 추가할 userName, userAge 전달
     props.onAddUser(enteredUsername, enteredAge);
     // 초기화
@@ -47,13 +47,13 @@ const AddUser = (props) => {
     setEnteredAge("");
   };
 
-  // const errorHandler = ()=>{
-  //   setError(null);
-  // }
+  const errorHandler = ()=>{
+    setError(null);
+  }
 
   return (
     <div>
-      {error && <ErrorModal title={error.title} message={error.message} />}
+      {error && <ErrorModal onConfirm={errorHandler} title={error.title} message={error.message} />}
       {/* <ErrorModal title={error.title} message={error.message} /> */}
       <Card className={styles.input}>
         {/* htmlFor: props속성이며, js에서 for에 해당함 */}
@@ -72,7 +72,7 @@ const AddUser = (props) => {
             onChange={ageChangeHandler}
             value={enteredAge}
           />
-          <Button type="submit" onClick={addUserHandler}>
+          <Button type="submit" onConfirm={addUserHandler}>
             Add User
           </Button>
         </form>

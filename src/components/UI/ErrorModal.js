@@ -8,7 +8,7 @@ const ErrorModal = (props) => {
   return (
     <div>
       {/* 본문과 상호작용을 막아줌 */}
-      <div className={styles.backdrop} />
+      <div className={styles.backdrop} onClick={props.onConfirm}/>
       <Card className={styles.modal}>
         <header className={styles.header}>
           {/* 모달창도 재사용할 수 있기 때문에 title등 동적으로 관리함. */}
@@ -18,7 +18,7 @@ const ErrorModal = (props) => {
           <p>{props.message}</p>
         </div>
         <footer className={styles.actions}>
-          <Button>Okay</Button>
+          <Button onClick={props.onConfirm}>Okay</Button>
         </footer>
       </Card>
     </div>
