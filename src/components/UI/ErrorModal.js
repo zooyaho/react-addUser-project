@@ -1,8 +1,23 @@
-import React from 'react';
+import React from "react";
+import styles from "./ErrorModal.module.css";
 
-const ErrorModal = props => {
-  return(
-    <div></div>
+import Card from "./Card";
+import Button from "./Button";
+
+const ErrorModal = (props) => {
+  return (
+    <Card className={styles.modal}>
+      <header className={styles.header}>
+        {/* 모달창도 재사용할 수 있기 때문에 title등 동적으로 관리함. */}
+        <h2>{props.title}</h2>
+      </header>
+      <div className={styles.content}>
+        <p>{props.message}</p>
+      </div>
+      <footer className={styles.actions}>
+        <Button>Okay</Button>
+      </footer>
+    </Card>
   );
 };
 
