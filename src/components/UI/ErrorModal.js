@@ -7,6 +7,7 @@ import Button from "./Button";
 const ErrorModal = (props) => {
   return (
     <div>
+      {/* 본문과 상호작용을 막아줌 */}
       <div className={styles.backdrop} />
       <Card className={styles.modal}>
         <header className={styles.header}>

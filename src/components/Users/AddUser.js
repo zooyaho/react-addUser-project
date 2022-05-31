@@ -8,6 +8,8 @@ import ErrorModal from "../UI/ErrorModal";
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUdername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+  // 초기값을 undefined로 설정
+  const [error, setError] = useState();
 
   const usernameChangeHandler = (event) => {
     setEnteredUdername(event.target.value);
@@ -20,10 +22,18 @@ const AddUser = (props) => {
     /* 유효성 검사 */
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       // 공백으로 입력한 경우
+      setError({
+        title: "Invalid input",
+        message: "Please enter a valid name and age (non-empty values)."
+      });
       return;
     }
-    if (enteredAge < 1) {
+    if (+enteredAge < 1) {
       // 나이를 0이하로 입력한 경우
+      setError({
+        title: "Invalid age",
+        message: "Please enter a valid age(>0)."
+      });
       return;
     }
 
@@ -37,9 +47,14 @@ const AddUser = (props) => {
     setEnteredAge("");
   };
 
+  // const errorHandler = ()=>{
+  //   setError(null);
+  // }
+
   return (
     <div>
-      <ErrorModal title="An error eccured!" message="Something went wrong!"/>
+      {error && <ErrorModal title={error.title} message={error.message} />}
+      {/* <ErrorModal title={error.title} message={error.message} /> */}
       <Card className={styles.input}>
         {/* htmlFor: props속성이며, js에서 for에 해당함 */}
         <form onSubmit={addUserHandler}>
