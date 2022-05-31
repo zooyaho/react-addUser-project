@@ -16,11 +16,21 @@ const AddUser = (props) => {
   };
 
   const addUserHandler = (event) => {
+    /* 유효성 검사 */
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      // 공백으로 입력한 경우
+      return;
+    }
+    if(enteredAge < 1){
+      // 나이를 0이하로 입력한 경우
+      return;
+    }
+
     //onSubmit 기본 동작을 멈춤
     event.preventDefault();
-    console.log(enteredAge, enteredUsername);
-    setEnteredUdername('');
-    setEnteredAge('');
+    setEnteredUdername("");
+    setEnteredAge("");
+    console.log("success~!");
   };
 
   return (
@@ -28,9 +38,19 @@ const AddUser = (props) => {
       {/* htmlFor: props속성이며, js에서 for에 해당함 */}
       <form onSubmit={addUserHandler}>
         <label htmlFor="username">Username</label>
-        <input id="username" type="text" onChange={usernameChangeHandler} value={enteredUsername}/>
+        <input
+          id="username"
+          type="text"
+          onChange={usernameChangeHandler}
+          value={enteredUsername}
+        />
         <label htmlFor="age">Age (Years)</label>
-        <input id="age" type="number" onChange={ageChangeHandler} value={enteredAge} />
+        <input
+          id="age"
+          type="number"
+          onChange={ageChangeHandler}
+          value={enteredAge}
+        />
         <Button type="submit" onClick={addUserHandler}>
           Add User
         </Button>
