@@ -1,4 +1,6 @@
 import React from "react";
+import styles from './AddUser.module.css';
+
 import Card from "../UI/Card";
 
 const AddUser = (props) => {
@@ -8,7 +10,7 @@ const AddUser = (props) => {
   };
 
   return (
-    <Card>
+    <Card className={styles.input}>
       {/* htmlFor: props속성이며, js에서 for에 해당함 */}
       <form onSubmit={addUserHandler}>
         <label htmlFor="username">Username</label>
