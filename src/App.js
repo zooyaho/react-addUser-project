@@ -1,18 +1,20 @@
-import React from "react";
-import { useState } from "react/cjs/react.production.min";
+import React,{ useState } from "react";
 import AddUser from "./components/Users/AddUser";
 import UserList from "./components/Users/UserList";
 
 function App() {
-  const userInfo =[
-    {name: 'mark', age:22},
+  const [userList, setUserList] = useState([]);
 
-  ];
+  const addUserHandler = (uName,uAge)=>{
+    setUserList((prevUsersList)=>{
+      return [...prevUsersList, {name:uName, age:uAge}];
+    });
+  };
 
   return (
     <div>
-      <AddUser username={userInfo} userage={userInfo} />
-      <UserList users={userInfo} />
+      <AddUser onAddUser={addUserHandler} />
+      <UserList users={userList} />
     </div>
   );
 }

@@ -28,12 +28,13 @@ const AddUser = (props) => {
 
     //onSubmit 기본 동작을 멈춤
     event.preventDefault();
+    
+    // App.js에 추가할 userName, userAge 전달
+    props.onAddUser(enteredUsername, enteredAge);
+    // 초기화
     setEnteredUdername("");
     setEnteredAge("");
-    console.log("success~!");
 
-    props.username = enteredUsername;
-    props.userage = enteredAge;
   };
 
   return (
