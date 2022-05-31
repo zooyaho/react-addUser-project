@@ -31,6 +31,9 @@ const AddUser = (props) => {
     setEnteredUdername("");
     setEnteredAge("");
     console.log("success~!");
+
+    props.username = enteredUsername;
+    props.userage = enteredAge;
   };
 
   return (
