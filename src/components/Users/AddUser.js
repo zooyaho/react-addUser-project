@@ -19,6 +19,8 @@ const AddUser = (props) => {
     //onSubmit 기본 동작을 멈춤
     event.preventDefault();
     console.log(enteredAge, enteredUsername);
+    setEnteredUdername('');
+    setEnteredAge('');
   };
 
   return (
@@ -26,9 +28,9 @@ const AddUser = (props) => {
       {/* htmlFor: props속성이며, js에서 for에 해당함 */}
       <form onSubmit={addUserHandler}>
         <label htmlFor="username">Username</label>
-        <input id="username" type="text" onChange={usernameChangeHandler} />
+        <input id="username" type="text" onChange={usernameChangeHandler} value={enteredUsername}/>
         <label htmlFor="age">Age (Years)</label>
-        <input id="age" type="number" onChange={ageChangeHandler} />
+        <input id="age" type="number" onChange={ageChangeHandler} value={enteredAge} />
         <Button type="submit" onClick={addUserHandler}>
           Add User
         </Button>
